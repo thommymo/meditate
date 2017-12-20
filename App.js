@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import styled from 'styled-components/native'
+import { Icon } from 'react-native-elements'
 
 export default class App extends React.Component {
   constructor(){
@@ -13,7 +14,6 @@ export default class App extends React.Component {
     const onPlaybackStatusUpdate = (playbackStatus) => {
 
       if (playbackStatus.isPlaying) {
-        this.setState( { playbackStatus: "Playing!" })
       }
       this.setState( {position: Math.floor(playbackStatus.positionMillis/1000+1) })
       this.setState( {duration: (playbackStatus.durationMillis/1000/60) })
@@ -26,11 +26,11 @@ export default class App extends React.Component {
     this.soundObject.stopAsync()
   }
   startPlaying(){
-    this.setState( { playbackStatus: "Playing!" })
+    this.setState( { playbackStatus: "playing" })
     this.soundObject.playAsync()
   }
   pausePlaying(){
-    this.setState( { playbackStatus: "Paused!" })
+    this.setState( { playbackStatus: "pausing" })
     this.soundObject.pauseAsync()
   }
   loadAudio(){
@@ -39,7 +39,7 @@ export default class App extends React.Component {
   }
   render() {
     return (
-      <View>
+      <MainView>
         <StyledText>Open up App.js to start working on your app!</StyledText>
         <Text>Changes you make will automatically reload.</Text>
         <Text>Shake your phone to open the developer menu.</Text>
@@ -50,10 +50,26 @@ export default class App extends React.Component {
         <Stop onPress={() => { this.stopPlaying() }} title="stop"></Stop>
         <Play onPress={() => { this.startPlaying()}} title="play"></Play>
         <Pause onPress={() => { this.pausePlaying()}} title="pause"></Pause>
-      </View>
+        { this.state.playbackStatus === "playing" &&
+          <Icon
+            name='pause'
+            color='#f50'
+            onPress={() => { this.pausePlaying() }} />
+        }
+        { this.state.playbackStatus === "pausing" &&
+          <Icon
+            name='play-arrow'
+            color='#f50'
+            onPress={() => { this.startPlaying() }} />
+        }
+      </MainView>
     );
   }
 }
+
+const MainView = styled.View`
+  background: grey;
+`
 const StyledText = styled.Text`
   text-align: right;
 `
