@@ -6,17 +6,26 @@ import styled from 'styled-components/native'
 
 export default class App extends React.Component {
 
+  state = { scrollEnabled: true }
+
+  disableScrolling(){
+    this.setState({scrollEnabled: false})
+  }
+
+  enableScrolling(){
+    this.setState({scrollEnabled: true})
+  }
+
   render() {
     return (
-      <ScrollView>
-        <Meditation/>
-        <Meditation/>
-        <Meditation/>
-        <Meditation/>
-        <Meditation/>
-        <Meditation/>
-        <Meditation/>
-        
+      <ScrollView scrollEnabled={this.state.scrollEnabled}>
+        <Meditation disableScrolling={() => this.disableScrolling() } enableScrolling={() => this.enableScrolling() } />
+        <Meditation disableScrolling={() => this.disableScrolling() } enableScrolling={() => this.enableScrolling() } />
+        <Meditation disableScrolling={() => this.disableScrolling() } enableScrolling={() => this.enableScrolling() } />
+        <Meditation disableScrolling={() => this.disableScrolling() } enableScrolling={() => this.enableScrolling() } />
+        <Meditation disableScrolling={() => this.disableScrolling() } enableScrolling={() => this.enableScrolling() } />
+        <Meditation disableScrolling={() => this.disableScrolling() } enableScrolling={() => this.enableScrolling() } />
+        <Meditation disableScrolling={() => this.disableScrolling() } enableScrolling={() => this.enableScrolling() } />
       </ScrollView>
     );
   }
