@@ -9,12 +9,14 @@ UIManager.setLayoutAnimationEnabledExperimental &&
   UIManager.setLayoutAnimationEnabledExperimental(true);
 
 export default class Meditation extends Component {
+
   state = { margin: "10", borderRadius: "10", height: "auto", padding: "20", position: "relative", top: "auto", zIndex:"0"}
+
   onPressOutButton(){
     LayoutAnimation.spring();
-    //this.setState({w: this.state.w + 15, h: this.state.h + 15}) // example for more values
     this.setState({ margin: "10" })
   }
+
   onPressInButton(){
     LayoutAnimation.spring();
     this.setState({ margin: "15" })
@@ -25,22 +27,17 @@ export default class Meditation extends Component {
       this.refs.meditate.root.measureInWindow((xRelPos, yRelPos) => {
         LayoutAnimation.spring();
         const pos = yPos - yRelPos - 10 //10 is because of original margin
-        const {height} = Dimensions.get('window');
-        console.log(height);
+        const { height } = Dimensions.get('window');
         this.setState({ margin: "0", borderRadius: "0", height: height, padding: "20", top: pos, position: "absolute", zIndex:"10" })
     })
    })
-
-
-    //this.setState({w: this.state.w + 15, h: this.state.h + 15}) // example for more values
-
-
   }
 
   resetToNormal(){
     LayoutAnimation.spring();
     this.setState({ margin: "10", borderRadius: "10", height: "auto", padding: "20", position: "relative", top: "auto", zIndex:"0"})
   }
+  
   render() {
     return (
         <TouchableWithoutFeedback
