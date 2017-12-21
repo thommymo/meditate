@@ -46,6 +46,7 @@ export default class Meditation extends Component {
 
   render() {
     return (
+      <Cards zIndexValue={this.state.zIndex}>
         <TouchableWithoutFeedback
           onPressIn={() => this.onPressInButton()}
           onPressOut={() => this.onPressOutButton()}
@@ -61,7 +62,6 @@ export default class Meditation extends Component {
             widthValue={this.state.width}
             positionValue={this.state.position}
             topValue={this.state.top}
-            zIndex={this.state.zIndex}
           >
             <Titel>This is the Title for the Audio</Titel>
             <Description>This is the Description for the Audio</Description>
@@ -69,12 +69,16 @@ export default class Meditation extends Component {
             <TouchableHighlight onPress={()=>this.resetToNormal()}><Text>Close</Text></TouchableHighlight>
           </MeditationSession>
         </TouchableWithoutFeedback>
+      </Cards>
     );
   }
 }
 
-
-MeditationSession = styled.View`
+const Cards = styled.View`
+  height:400px;
+  z-index: ${props => props.zIndexValue}
+`
+const MeditationSession = styled.View`
   position: ${props => props.positionValue};
   top: ${props => props.topValue};
   padding: ${props => props.paddingValue}px;
@@ -86,14 +90,13 @@ MeditationSession = styled.View`
   shadow-offset: 0px 2px;
   shadow-opacity: 0.3;
   shadow-radius: 20px;
-  z-index: ${props => props.zIndex};
 `
-Titel = styled.Text`
+const Titel = styled.Text`
   font-size: 30px;
   padding-top: 10px;
   padding-bottom: 10px;
 `
-Description = styled.Text`
+const Description = styled.Text`
   font-size: 17px;
   padding-bottom: 10px;
 `
