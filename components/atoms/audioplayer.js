@@ -6,13 +6,19 @@ export default class AudioPlayer extends Component {
   constructor(){
     super()
     this.state = { playbackStatus: "Not Loaded!" }
+    //Set behaviour of Audio playback
+    Expo.Audio.setAudioModeAsync({
+      playsInSilentModeIOS: true, //plays in silent mode
+      allowsRecordingIOS: false, //doesn't allow recording
+      interruptionModeIOS: Expo.Audio.INTERRUPTION_MODE_IOS_MIX_WITH_OTHERS, //does interrupt other audio from other player
+      shouldDuckAndroid: true, 
+      interruptionModeAndroid: Expo.Audio.INTERRUPTION_MODE_ANDROID_DO_NOT_MIX //does interrupt other audio from other player
+    })
     this.soundObject = new Expo.Audio.Sound()
   }
   componentDidMount(){
     const onPlaybackStatusUpdate = (playbackStatus) => {
 
-      if (playbackStatus.isPlaying) {
-      }
       this.setState( {position: Math.floor(playbackStatus.positionMillis/1000+1) })
       this.setState( {duration: (playbackStatus.durationMillis/1000/60) })
     }
