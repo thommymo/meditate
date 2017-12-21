@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Text, View, TouchableWithoutFeedback, NativeModules, LayoutAnimation, TouchableHighlight, Dimensions} from 'react-native';
+import { Text, Image, View, TouchableWithoutFeedback, NativeModules, LayoutAnimation, TouchableHighlight, Dimensions} from 'react-native';
 import AudioPlayer from '../atoms/audioplayer'
 import styled from 'styled-components/native'
 
@@ -63,16 +63,30 @@ export default class Meditation extends Component {
             positionValue={this.state.position}
             topValue={this.state.top}
           >
-            <Titel>This is the Title for the Audio</Titel>
-            <Description>This is the Description for the Audio</Description>
-            <AudioPlayer />
-            <TouchableHighlight onPress={()=>this.resetToNormal()}><Text>Close</Text></TouchableHighlight>
+            {this.state.disabled &&
+              <CloseIcon>
+                <TouchableWithoutFeedback onPress={()=>this.resetToNormal()}  disabled={!this.state.disabled}>
+                  <Image source={require('../../assets/images/close.png')} />
+                </TouchableWithoutFeedback>
+              </CloseIcon>
+            }
+            <UpTitle disabled={!this.state.disabled}>MEDITATION 1</UpTitle>
+            <Title>This is the Title for the Audio</Title>
+            <AudioHide  disabled={!this.state.disabled} >
+              <AudioPlayer/>
+            </AudioHide>
           </MeditationSession>
         </TouchableWithoutFeedback>
       </Cards>
     );
   }
 }
+const CloseIcon = styled.View`
+`
+const AudioHide = styled.View`
+  height: ${props => props.disabled ? "0px" : "150px"};
+  overflow: hidden;
+`
 
 const Cards = styled.View`
   height:400px;
@@ -83,7 +97,7 @@ const MeditationSession = styled.View`
   top: ${props => props.topValue};
   padding: ${props => props.paddingValue}px;
   margin: ${props => props.marginValue}px;
-  background-color: #f06292;
+  background: white;
   border-radius: ${props => props.borderRadiusValue}px;
   height: ${props => props.heightValue};
   width: ${props => props.widthValue};
@@ -91,10 +105,17 @@ const MeditationSession = styled.View`
   shadow-opacity: 0.3;
   shadow-radius: 20px;
 `
-const Titel = styled.Text`
+const Title = styled.Text`
   font-size: 30px;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  font-family: 'barlow-bold';
+  padding-top: 0px;
+  padding-bottom: 0px;
+`
+const UpTitle = styled.Text`
+  font-family: 'barlow-medium'
+  font-size: 14px;
+  padding-top: ${props => props.disabled ? "10px" : "100px"};
+  padding-bottom: 5px;
 `
 const Description = styled.Text`
   font-size: 17px;
