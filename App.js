@@ -76,27 +76,57 @@ const data = {
     {
       toptitle: "Meditation 1",
       title: "First Meditation",
-      audio: require('./assets/10.mp3')
+      audio: require('./assets/audio/1.mp3')
     },
     {
       toptitle: "Meditation 2",
       title: "Second Meditation",
-      audio: require('./assets/10.mp3')
+      audio: require('./assets/audio/2.mp3')
     },
     {
       toptitle: "Meditation 3",
       title: "Third Meditation",
-      audio: require('./assets/10.mp3')
+      audio: require('./assets/audio/3.mp3')
     },
     {
       toptitle: "Meditation 4",
       title: "Forth Meditation",
-      audio: require('./assets/10.mp3')
+      audio: require('./assets/audio/4.mp3')
+    },
+    {
+      toptitle: "Meditation 5",
+      title: "Forth Meditation",
+      audio: require('./assets/audio/5.mp3')
+    },
+    {
+      toptitle: "Meditation 6",
+      title: "Forth Meditation",
+      audio: require('./assets/audio/6.mp3')
+    },
+    {
+      toptitle: "Meditation 7",
+      title: "Forth Meditation",
+      audio: require('./assets/audio/7.mp3')
+    },
+    {
+      toptitle: "Meditation 8",
+      title: "Forth Meditation",
+      audio: require('./assets/audio/8.mp3')
+    },
+    {
+      toptitle: "Meditation 9",
+      title: "Forth Meditation",
+      audio: require('./assets/audio/9.mp3')
+    },
+    {
+      toptitle: "Meditation 10",
+      title: "Forth Meditation",
+      audio: require('./assets/audio/10.mp3')
     },
   ]
 }
 
-// TODO: 
+// TODO:
 // 1. mp3s verkleinern und hochladen
 // 2. titel vergeben
 // 3. Allenfalls grafiken hinzufügen
