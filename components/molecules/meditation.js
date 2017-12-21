@@ -64,11 +64,10 @@ export default class Meditation extends Component {
             topValue={this.state.top}
           >
             {this.state.disabled &&
-              <CloseIcon>
-                <TouchableWithoutFeedback onPress={()=>this.resetToNormal()}  disabled={!this.state.disabled}>
-                  <Image source={require('../../assets/images/close.png')} />
-                </TouchableWithoutFeedback>
-              </CloseIcon>
+              /* Close Icon */
+              <TouchableWithoutFeedback onPress={()=>this.resetToNormal()}  disabled={!this.state.disabled}>
+                <Image source={require('../../assets/images/close.png')} />
+              </TouchableWithoutFeedback>
             }
             <UpTitle disabled={!this.state.disabled}>MEDITATION 1</UpTitle>
             <Title>This is the Title for the Audio</Title>
@@ -81,8 +80,7 @@ export default class Meditation extends Component {
     );
   }
 }
-const CloseIcon = styled.View`
-`
+
 const AudioHide = styled.View`
   height: ${props => props.disabled ? "0px" : "150px"};
   overflow: hidden;
