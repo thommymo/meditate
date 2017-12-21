@@ -13,6 +13,7 @@ export default class App extends React.Component {
     await Font.loadAsync({
       'barlow-bold': require('./assets/fonts/Barlow/Barlow-Bold.ttf'),
       'barlow-medium': require('./assets/fonts/Barlow/Barlow-Medium.ttf'),
+      'barlow-light': require('./assets/fonts/Barlow/Barlow-Light.ttf'),
     });
     this.setState({ fontLoaded: true });
   }
@@ -41,13 +42,16 @@ export default class App extends React.Component {
               />
             </StatusBarView>
             <Title>Mensch werde wesentlich</Title>
-            <Meditation disableScrolling={() => this.disableScrolling() } enableScrolling={() => this.enableScrolling() } />
-            <Meditation disableScrolling={() => this.disableScrolling() } enableScrolling={() => this.enableScrolling() } />
-            <Meditation disableScrolling={() => this.disableScrolling() } enableScrolling={() => this.enableScrolling() } />
-            <Meditation disableScrolling={() => this.disableScrolling() } enableScrolling={() => this.enableScrolling() } />
-            <Meditation disableScrolling={() => this.disableScrolling() } enableScrolling={() => this.enableScrolling() } />
-            <Meditation disableScrolling={() => this.disableScrolling() } enableScrolling={() => this.enableScrolling() } />
-            <Meditation disableScrolling={() => this.disableScrolling() } enableScrolling={() => this.enableScrolling() } />
+            { data.meditationSessions.map((meditationSession) => (
+              <Meditation
+                key={meditationSession.title}
+                disableScrolling={() => this.disableScrolling() }
+                enableScrolling={() => this.enableScrolling() }
+                toptitle={meditationSession.toptitle}
+                title={meditationSession.title}
+                audio={meditationSession.audio}
+              />
+            ))}
           </View>
         ) : null }
       </ScrollView>
@@ -66,3 +70,33 @@ const StatusBarView = styled.View`
   height: ${Constants.statusBarHeight};
   background: white;
 `
+
+const data = {
+  meditationSessions: [
+    {
+      toptitle: "Meditation 1",
+      title: "First Meditation",
+      audio: require('./assets/10.mp3')
+    },
+    {
+      toptitle: "Meditation 2",
+      title: "Second Meditation",
+      audio: require('./assets/10.mp3')
+    },
+    {
+      toptitle: "Meditation 3",
+      title: "Third Meditation",
+      audio: require('./assets/10.mp3')
+    },
+    {
+      toptitle: "Meditation 4",
+      title: "Forth Meditation",
+      audio: require('./assets/10.mp3')
+    },
+  ]
+}
+
+// TODO: 
+// 1. mp3s verkleinern und hochladen
+// 2. titel vergeben
+// 3. Allenfalls grafiken hinzufügen
