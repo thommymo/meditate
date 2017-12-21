@@ -69,10 +69,10 @@ export default class Meditation extends Component {
                 <Image source={require('../../assets/images/close.png')} />
               </TouchableWithoutFeedback>
             }
-            <UpTitle disabled={!this.state.disabled}>MEDITATION 1</UpTitle>
-            <Title>This is the Title for the Audio</Title>
+            <UpTitle disabled={!this.state.disabled}>{this.props.toptitle}</UpTitle>
+            <Title>{this.props.title}</Title>
             <AudioHide  disabled={!this.state.disabled} >
-              <AudioPlayer/>
+              <AudioPlayer audio={this.props.audio}/>
             </AudioHide>
           </MeditationSession>
         </TouchableWithoutFeedback>
@@ -82,12 +82,11 @@ export default class Meditation extends Component {
 }
 
 const AudioHide = styled.View`
-  height: ${props => props.disabled ? "0px" : "150px"};
+  height: ${props => props.disabled ? "0px" : "350px"};
   overflow: hidden;
 `
-
 const Cards = styled.View`
-  height:400px;
+  min-height:120px;
   z-index: ${props => props.zIndexValue}
 `
 const MeditationSession = styled.View`
@@ -107,7 +106,7 @@ const Title = styled.Text`
   font-size: 30px;
   font-family: 'barlow-bold';
   padding-top: 0px;
-  padding-bottom: 0px;
+  padding-bottom: 10px;
 `
 const UpTitle = styled.Text`
   font-family: 'barlow-medium'
