@@ -27,11 +27,10 @@ export default class Meditation extends Component {
 
   onPressButton(){
     this.props.disableScrolling()
-    // TODO: The last elements do not work yet properly
     this.refs.meditate.root.measure((xPos, yPos) => {
       this.refs.meditate.root.measureInWindow((xRelPos, yRelPos) => {
         LayoutAnimation.spring();
-        const pos = yPos - yRelPos - 10 //10 is because of original margin
+        const pos = yPos - yRelPos - 5 //10 is because of original margin
         const { height } = Dimensions.get('window');
         this.setState({ margin: "0", borderRadius: "0", height: height, width: "100%", padding: "20", top: pos, position: "absolute", zIndex:"10", disabled: true })
     })
